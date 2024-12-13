@@ -58,13 +58,21 @@ end
 local player = game.Players.LocalPlayer -- Replace with your player reference
 togglePremiumOnly(player)
 
-local gameids = loadstring(game:HttpGet(("https://raw.githubusercontent.com/Jamaloneil123/Dex/refs/heads/main/gameids")))()
+
+if game.PlaceId == 10449761463 then
+    GameName = "TSB"
+elseif game.PlaceId == 10449761463 then
+    GameName = "fisch"
+else
+    GameName = "Unknown"
+end
+
+
+
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = GameName, HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 
-GameName = require("gameids")
-
-if PremiumOnly1 and OwnerOnly1== true then
+if PremiumOnly1 and OwnerOnly1 == true then
 
 
 elseif PremiumOnly1 and OwnerOnly1 == false then
@@ -600,22 +608,3 @@ else
         Time = 10
     })
 end
-
-
-
-function Names()
--- Check the game's PlaceId to set the GameName
-    if game.PlaceId == 10449761463 then
-        GameName = "tsb"
-    elseif game.PlaceId == 16732694052 then
-        GameName = "fisch"
-    else
-        GameName = "unknown"
-    end
-
-    return GameName  -- Return the GameName
-end
-
-print(Window.Name)
-
-OrionLib:Init()
