@@ -61,14 +61,13 @@ end
 -- List of UserIds who should have access to the premium features
 local premiumUserIds = {
     12345678, -- Replace with actual UserIds of Premium players
-    87654321, -- Add more UserIds here as needed
-    7629016664,
+    7629016664, -- Add more UserIds here as needed
 }
 
 -- List of Owner UserIds
 local ownerUserIds = {
     7690555926, -- Replace with the first owner's UserId
-    87654321, -- Replace with the second owner's UserId
+    1234567891, -- Replace with the second owner's UserId
 }
 
 -- Function to check if the player is a premium user
@@ -634,7 +633,7 @@ if OwnerOnly1 == false then
     -- Notification for Owners
     OrionLib:MakeNotification({
         Name = "You're an owner!",
-        Content = "You're so skibidi for making me fr unless your levi then your a retard",
+        Content = "You're so skibidi for making me fr",
         Image = "rbxassetid://4483345998",
         Time = 10
     })
