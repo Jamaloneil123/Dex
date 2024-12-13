@@ -58,7 +58,7 @@ end
 local player = game.Players.LocalPlayer -- Replace with your player reference
 togglePremiumOnly(player)
 
-local GameName = Names
+local GameName = ""  -- Start with an empty string
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = GameName, HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
@@ -137,8 +137,8 @@ elseif PremiumOnly1 and OwnerOnly1 == false then
         PremiumOnly = PremiumOnly1 and OwnerOnly1
     })
 
-    local zieks a puss = Window:MakeTab({
-        Name = "zieks a puss",
+    local Unassigned = Window:MakeTab({
+        Name = "Unassigned",
         Icon = "rbxassetid://4483345998",
         PremiumOnly = PremiumOnly1 and OwnerOnly1
     })
@@ -603,12 +603,14 @@ end
 
 
 function Names()
-    local GameName = {
+-- Check the game's PlaceId to set the GameName
     if game.PlaceId == 10449761463 then
-        GameName == "tsb"
+        GameName = "tsb"
     elseif game.PlaceId == 16732694052 then
-        GameName == "fisch"
-    else 
-        GameName == "unknown"}
-    return GameName
+        GameName = "fisch"
+    else
+        GameName = "unknown"
+    end
+
+    return GameName  -- Return the GameName
 end
