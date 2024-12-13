@@ -137,8 +137,8 @@ elseif PremiumOnly1 and OwnerOnly1 == false then
         PremiumOnly = PremiumOnly1 and OwnerOnly1
     })
 
-    local Unassigned = Window:MakeTab({
-        Name = "Unassigned",
+    local zieks a puss = Window:MakeTab({
+        Name = "zieks a puss",
         Icon = "rbxassetid://4483345998",
         PremiumOnly = PremiumOnly1 and OwnerOnly1
     })
