@@ -165,6 +165,10 @@ elseif PremiumOnly1 and OwnerOnly1 == false then
         Name = "premium test"
     })
 
+    local Dex = Universal:AddSection({
+        Name = "Dex explorer"
+    })
+
     local infyield = Universal:AddSection({
         Name = "Infinite yield"
     })
@@ -545,6 +549,13 @@ elseif PremiumOnly1 and OwnerOnly1 == false then
         Callback = function()
                     loadstring(game:HttpGet("https://pastefy.app/1m6k8kOE/raw"))()
 
+        end    
+    })
+
+    Dex:AddButton({
+        Name = "Dex explorer",
+        Callback = function()
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/Jamaloneil123/Dex/refs/heads/main/dexexplorer"))()
         end    
     })
     
