@@ -1,3 +1,14 @@
+if game.PlaceId == 10449761463 then
+    GameName = "TBS"
+elseif game.PlaceId == 17625359962 then
+    GameName = "RIVALS"
+    Players = (Players - Client)
+elseif game.PlaceId == nil then
+    GameName = "unknown"
+end
+
+
+
 -- Client-side script: Detects if a player has the specific UserId and toggles PremiumOnly property
 
 local Players = game:GetService("Players")
@@ -56,14 +67,6 @@ end
 -- Example usage
 local player = game.Players.LocalPlayer -- Replace with your player reference
 togglePremiumOnly(player)
-
-
-
-if game.PlaceId == 10449761463 then
-    GameName = "TBS"
-elseif game.PlaceId == nil then
-    GameName = "Unknown"
-end
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = GameName, HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
