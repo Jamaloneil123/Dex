@@ -1,8 +1,10 @@
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 if game.PlaceId == 10449761463 then
     GameName = "TBS"
 elseif game.PlaceId == 17625359962 then
     GameName = "RIVALS"
     Players = (Players - Client)
+    ReplicatedStorage = (ReplicatedStorage - Client)
 elseif game.PlaceId == nil then
     GameName = "unknown"
 end
