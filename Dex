@@ -1,4 +1,4 @@
-get GameName
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Jamaloneil123/Dex/refs/heads/main/game ids"))()
 
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
