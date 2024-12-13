@@ -1,20 +1,62 @@
-local ReplicatedStorage = game:GetService("ReplicatedStorage - client")
-if game.PlaceId == 10449761463 then
-    GameName = "TBS"
-elseif game.PlaceId == 17625359962 then
-    GameName = "RIVALS"
-    Players = (Players - Client)
-    ReplicatedStorage = (ReplicatedStorage - Client)
+-- Function to find ReplicatedStorage or renamed versions
+local function findReplicatedStorage()
+    -- Search the game hierarchy for instances with "ReplicatedStorage" in their name
+    for _, child in pairs(game:GetChildren()) do
+        if string.lower(child.Name):find("replicatedstorage") then
+            return child -- Return the found instance
+        end
+    end
+    return nil -- Return nil if no match is found
+end
+
+-- Attempt to locate ReplicatedStorage
+local ReplicatedStorage = findReplicatedStorage()
+
+-- Check if ReplicatedStorage was found
+if ReplicatedStorage then
+    print("ReplicatedStorage found: " .. ReplicatedStorage.Name)
 else
-    GameName = "unknown"
+    warn("ReplicatedStorage could not be found.")
+end
+
+-- Function to find Players or renamed versions
+local function findPlayers()
+    -- Search the game hierarchy for instances with "Players" in their name
+    for _, child in pairs(game:GetChildren()) do
+        if string.lower(child.Name):find("players") then
+            return child -- Return the found instance
+        end
+    end
+    return nil -- Return nil if no match is found
+end
+
+-- Attempt to locate Players
+local PlayersService = findPlayers()
+
+-- Check if Players was found
+if PlayersService then
+    print("Players service found: " .. PlayersService.Name)
+else
+    warn("Players service could not be found.")
 end
 
 
 
--- Client-side script: Detects if a player has the specific UserId and toggles PremiumOnly property
+
+
 
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
+local Players = PlayersService
+
+if game.PlaceId == 10449761463 then
+    GameName = "TBS"
+elseif game.PlaceId == 17625359962 then
+    GameName = "RIVALS"
+else
+    GameName = "unknown"
+end
+
 
 -- List of UserIds who should have access to the premium features
 local premiumUserIds = {
