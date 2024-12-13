@@ -300,10 +300,6 @@ elseif PremiumOnly1 and OwnerOnly1 == false then
         Name = "sans"
     })
 
-    local a = info:AddSection({
-        Name = "coopers a fag"
-    })
-
     local b = info:AddSection({
         Name = "levi's a retard"
     })
