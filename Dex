@@ -58,7 +58,7 @@ end
 local player = game.Players.LocalPlayer -- Replace with your player reference
 togglePremiumOnly(player)
 
-local GameName = ""  -- Start with an empty string
+local GameName = Names()  -- Start with an empty string
 
 function Names()
     -- Check the game's PlaceId to set the GameName
@@ -72,8 +72,6 @@ function Names()
     
         return GameName  -- Return the GameName
 end
-
-Names()
     
 print(GameName)
 
