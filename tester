@@ -6,3 +6,4 @@ local Window = OrionLib:MakeWindow({Name = GameName, HidePremium = false, SaveCo
 local tabs = require("tabs")
 local GameName = require("gameids")
 
+print(GameName)
