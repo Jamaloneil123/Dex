@@ -1,7 +1,5 @@
-tabs = tabs
+local tabs =  {
 
-
-tabs = {
 -- tabs --
     
     local info = Window:MakeTab({
