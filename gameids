@@ -6,6 +6,4 @@ if game.PlaceId == 10449761463 then
     GameName = "TSB"
 elseif game.PlaceId == 17625359962 then
     GameName = "RIVALS"
-else
-    GameName = "unknown"
 end
