@@ -1,4 +1,4 @@
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ReplicatedStorage = game:GetService("ReplicatedStorage - client")
 if game.PlaceId == 10449761463 then
     GameName = "TBS"
 elseif game.PlaceId == 17625359962 then
