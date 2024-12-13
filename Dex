@@ -62,15 +62,15 @@ local GameName = Names()  -- Start with an empty string
 
 function Names()
     -- Check the game's PlaceId to set the GameName
-        if game.PlaceId == 10449761463 then
-            GameName = "tsb"
-        elseif game.PlaceId == 16732694052 then
-            GameName = "fisch"
-        else
-            GameName = "unknown"
-        end
+    if game.PlaceId == 10449761463 then
+        GameName = "tsb"
+    elseif game.PlaceId == 16732694052 then
+        GameName = "fisch"
+    else
+        GameName = "unknown"
+     end
     
-        return GameName  -- Return the GameName
+ return GameName  -- Return the GameName
 end
     
 print(GameName)
