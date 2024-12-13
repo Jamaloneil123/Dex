@@ -617,3 +617,5 @@ function Names()
 end
 
 print(Window.Name)
+
+OrionLib:Init()
