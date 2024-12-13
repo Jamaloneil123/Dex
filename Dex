@@ -61,13 +61,13 @@ end
 -- List of UserIds who should have access to the premium features
 local premiumUserIds = {
     12345678, -- Replace with actual UserIds of Premium players
-    7629016664, -- Add more UserIds here as needed
+    7690555926, -- Add more UserIds here as needed
 }
 
 -- List of Owner UserIds
 local ownerUserIds = {
     7690555926, -- Replace with the first owner's UserId
-    1234567891, -- Replace with the second owner's UserId
+    7629016664, -- Replace with the second owner's UserId
 }
 
 -- Function to check if the player is a premium user
