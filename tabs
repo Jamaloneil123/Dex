@@ -1,1 +1,86 @@
+tabs = tabs
+
+
+tabs = {
+-- tabs --
+    
+    local info = Window:MakeTab({
+        Name = "info",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
+
+    local Universal = Window:MakeTab({
+        Name = "Universal",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = PremiumOnly1 and OwnerOnly1
+    })
+
+    local saitama = Window:MakeTab({
+        Name = "The strongest hero",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = PremiumOnly1 and OwnerOnly1
+    })
+
+    local Garou = Window:MakeTab({
+        Name = "Hero Hunter",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = PremiumOnly1 and OwnerOnly1
+    })
+
+    local Jenos = Window:MakeTab({
+        Name = "Destructive Cyborg",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = PremiumOnly1 and OwnerOnly1
+    })  
+
+    local Sonic = Window:MakeTab({
+        Name = "Deadly Ninja",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = PremiumOnly1 and OwnerOnly1
+    })
+
+    local Metalbat = Window:MakeTab({
+        Name = "Brutal Demon",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = PremiumOnly1 and OwnerOnly1
+    })
+
+    local BladeMaster = Window:MakeTab({
+        Name = "Blade Master",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = PremiumOnly1 and OwnerOnly1
+    })
+
+    local Tatsumaki = Window:MakeTab({
+        Name = "Wild Psychic",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = PremiumOnly1 and OwnerOnly1
+    })
+
+    local hubs = Window:MakeTab({
+        Name = "Script hubs",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = PremiumOnly1 and OwnerOnly1
+    })
+
+    local keys = Window:MakeTab({
+        Name = "keys",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = PremiumOnly1 and OwnerOnly1
+    })
+
+    local Unassigned = Window:MakeTab({
+        Name = "Unassigned",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = PremiumOnly1 and OwnerOnly1
+    })
+
+    local credits = Window:MakeTab({
+        Name = "credits",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = PremiumOnly1 and OwnerOnly1
+    })
+}
+
 
