@@ -1,4 +1,4 @@
-local tabs =  {
+local tabs =  {}
 
 -- tabs --
     
@@ -79,6 +79,7 @@ local tabs =  {
         Icon = "rbxassetid://4483345998",
         PremiumOnly = PremiumOnly1 and OwnerOnly1
     })
-}
+
+return tabs
 
 
