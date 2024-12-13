@@ -73,7 +73,7 @@ function Names()
         return GameName  -- Return the GameName
 end
 
-names()
+Names()
     
 print(GameName)
 
