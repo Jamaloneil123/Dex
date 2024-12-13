@@ -63,7 +63,7 @@ local GameName = loadstring(game:HttpGet("https://raw.githubusercontent.com/Jama
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = GameName, HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 
-GameName = require("gameids")
+data = require("gameids")
 
 if PremiumOnly1 and OwnerOnly1== true then
 
