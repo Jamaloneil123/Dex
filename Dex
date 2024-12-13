@@ -615,4 +615,4 @@ function Names()
     return GameName  -- Return the GameName
 end
 
-print(Window)
+print(Window.Name)
