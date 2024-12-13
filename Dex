@@ -633,7 +633,7 @@ if OwnerOnly1 == false then
     -- Notification for Owners
     OrionLib:MakeNotification({
         Name = "You're an owner!",
-        Content = "You're so skibidi for making me fr",
+        Content = "You're so skibidi for making me fr unless ur cooper than ur a retard and cant code for shit",
         Image = "rbxassetid://4483345998",
         Time = 10
     })
