@@ -3,15 +3,6 @@ local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local Players = PlayersService
 
-if game.PlaceId == 10449761463 then
-    GameName = "TBS"
-elseif game.PlaceId == 17625359962 then
-    GameName = "RIVALS"
-else
-    GameName = "unknown"
-end
-
-
 -- List of UserIds who should have access to the premium features
 local premiumUserIds = {
     12345678, -- Replace with actual UserIds of Premium players
