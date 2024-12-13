@@ -5,7 +5,7 @@ elseif game.PlaceId == 17625359962 then
     GameName = "RIVALS"
     Players = (Players - Client)
     ReplicatedStorage = (ReplicatedStorage - Client)
-elseif game.PlaceId == nil then
+else
     GameName = "unknown"
 end
 
