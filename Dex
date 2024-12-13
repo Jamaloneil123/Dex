@@ -68,7 +68,7 @@ function Names()
         GameName = "fisch"
     else
         GameName = "unknown"
-     end
+    end
     
  return GameName  -- Return the GameName
 end
