@@ -72,6 +72,8 @@ function Names()
     
         return GameName  -- Return the GameName
 end
+
+names()
     
 print(GameName)
 
