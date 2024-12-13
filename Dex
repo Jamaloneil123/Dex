@@ -58,6 +58,20 @@ end
 local player = game.Players.LocalPlayer -- Replace with your player reference
 togglePremiumOnly(player)
 
+function Names()
+-- Check the game's PlaceId to set the GameName
+    if game.PlaceId == 10449761463 then
+        GameName = "tsb"
+    elseif game.PlaceId == 16732694052 then
+        GameName = "fisch"
+    else
+        GameName = "unknown"
+    end
+
+    return GameName  -- Return the GameName
+end
+
+
 local GameName = ""  -- Start with an empty string
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
@@ -599,20 +613,3 @@ else
         Time = 10
     })
 end
-
-
-
-function Names()
--- Check the game's PlaceId to set the GameName
-    if game.PlaceId == 10449761463 then
-        GameName = "tsb"
-    elseif game.PlaceId == 16732694052 then
-        GameName = "fisch"
-    else
-        GameName = "unknown"
-    end
-
-    return GameName  -- Return the GameName
-end
-
-print(Window.Name)
