@@ -62,9 +62,7 @@ local gameids = loadstring(game:HttpGet(("https://raw.githubusercontent.com/Jama
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = GameName, HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 
-local GameName = require("gameids")
-
-print(GameName)
+GameName = require("gameids")
 
 if PremiumOnly1 and OwnerOnly1== true then
 
@@ -602,3 +600,20 @@ else
         Time = 10
     })
 end
+
+
+
+function Names()
+-- Check the game's PlaceId to set the GameName
+    if game.PlaceId == 10449761463 then
+        GameName = "tsb"
+    elseif game.PlaceId == 16732694052 then
+        GameName = "fisch"
+    else
+        GameName = "unknown"
+    end
+
+    return GameName  -- Return the GameName
+end
+
+print(Window.Name)
