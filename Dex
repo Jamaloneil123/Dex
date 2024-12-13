@@ -68,9 +68,8 @@ function Names()
         GameName = "fisch"
     else
         GameName = "unknown"
-    end
-    
- return GameName  -- Return the GameName
+end
+    return GameName  -- Return the GameName
 end
     
 print(GameName)
