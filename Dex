@@ -62,7 +62,7 @@ togglePremiumOnly(player)
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = GameName, HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 
-local GameName = require("gameids")
+GameName = require("gameids")
 
 if PremiumOnly1 and OwnerOnly1== true then
    
