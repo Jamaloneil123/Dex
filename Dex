@@ -656,6 +656,4 @@ else
         Time = 10
     })
 end
-
-
-print("player")
+end
