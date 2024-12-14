@@ -2,6 +2,9 @@
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local Players = Players
+local loopSpeedEnabled = false -- Toggle state
+local loopSpeedValue = 16      -- Default walk speed value
+local loopConnection = nil     -- To hold the loop connection
 
 
 -- List of UserIds who should have access to the premium features
@@ -604,10 +607,6 @@ elseif PremiumOnly1 and OwnerOnly1 == false then
 
 -- sliders -- 
 
--- Global variable to hold the walk speed value
-local loopSpeedValue = 16 -- Default speed
-
--- Slider Code
 Playerstuff:AddSlider({
 	Name = "Walkspeed",
 	Min = 16,
@@ -617,47 +616,66 @@ Playerstuff:AddSlider({
 	Increment = 2,
 	ValueName = "Walk speed",
 	Callback = function(Value)
-		-- Update the global loopSpeedValue dynamically
-		loopSpeedValue = Value
+		loopSpeedValue = Value -- Update the global speed value
+		if loopSpeedEnabled then
+			-- If the loop is enabled, apply the updated speed immediately
+			local speaker = game.Players.LocalPlayer
+			local Char = speaker.Character or workspace:FindFirstChild(speaker.Name)
+			local Human = Char and Char:FindFirstChildWhichIsA("Humanoid")
+			if Human then
+				Human.WalkSpeed = loopSpeedValue
+			end
+		end
 	end    
 })
 
--- Loop Walkspeed Command Code
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Jamaloneil123/Dex/refs/heads/main/infyield"))()
-addcmd('loopspeed', {'loopws'}, function(args, speaker)
-	local speed = loopSpeedValue -- Start with the current slider value
-	if args[1] then
-		speed = tonumber(args[1]) or loopSpeedValue -- Allow manual input, fallback to slider value
-	end
+-- toggles -- 
 
-	-- Update loopSpeedValue globally for the slider
-	loopSpeedValue = speed
+Playerstuff:AddToggle({
+	Name = "Loop Walkspeed",
+	Default = false,
+	Callback = function(Value)
+		loopSpeedEnabled = Value -- Update the toggle state
 
-	-- Define the character and humanoid
-	local Char = speaker.Character or workspace:FindFirstChild(speaker.Name)
-	local Human = Char and Char:FindFirstChildWhichIsA("Humanoid")
+		-- Get the player and humanoid
+		local speaker = game.Players.LocalPlayer
+		local Char = speaker.Character or workspace:FindFirstChild(speaker.Name)
+		local Human = Char and Char:FindFirstChildWhichIsA("Humanoid")
 
-	-- Function to constantly apply WalkSpeed
-	local function WalkSpeedChange()
-		if Char and Human then
-			Human.WalkSpeed = loopSpeedValue -- Always apply the global value
+		-- Function to enforce WalkSpeed
+		local function ApplyWalkSpeed()
+			if Char and Human then
+				Human.WalkSpeed = loopSpeedValue
+			end
+		end
+
+		if loopSpeedEnabled then
+			-- Enable the loop
+			if Human then
+				ApplyWalkSpeed() -- Apply once immediately
+			end
+			-- Connect the loop to enforce WalkSpeed changes
+			loopConnection = Human:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+				ApplyWalkSpeed()
+			end)
+
+			-- Handle respawning
+			speaker.CharacterAdded:Connect(function(newChar)
+				Char, Human = newChar, newChar:WaitForChild("Humanoid")
+				ApplyWalkSpeed()
+				loopConnection = Human:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+					ApplyWalkSpeed()
+				end)
+			end)
+		else
+			-- Disable the loop
+			if loopConnection then
+				loopConnection:Disconnect()
+				loopConnection = nil
+			end
 		end
 	end
-
-	-- Run the WalkSpeed loop
-	WalkSpeedChange()
-	HumanModCons.wsLoop = (HumanModCons.wsLoop and HumanModCons.wsLoop:Disconnect() and false) 
-		or Human:GetPropertyChangedSignal("WalkSpeed"):Connect(WalkSpeedChange)
-
-	-- Ensure it persists after respawn
-	HumanModCons.wsCA = (HumanModCons.wsCA and HumanModCons.wsCA:Disconnect() and false) 
-		or speaker.CharacterAdded:Connect(function(nChar)
-			Char, Human = nChar, nChar:WaitForChild("Humanoid")
-			WalkSpeedChange()
-			HumanModCons.wsLoop = (HumanModCons.wsLoop and HumanModCons.wsLoop:Disconnect() and false) 
-				or Human:GetPropertyChangedSignal("WalkSpeed"):Connect(WalkSpeedChange)
-		end)
-end)
+})
 
 
 
@@ -665,7 +683,7 @@ if OwnerOnly1 == false then
     -- Notification for Owners
     OrionLib:MakeNotification({
         Name = "You're an owner!",
-        Content = "You're so skibidi for making me fr",
+        Content = "You're so skibidi for making me fr! Go checkout Player stuff tab",
         Image = "rbxassetid://4483345998",
         Time = 10
     })
@@ -687,3 +705,6 @@ else
     })
 end
 end
+
+
+OrionLib:Init()
