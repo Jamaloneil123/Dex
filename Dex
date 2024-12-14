@@ -171,7 +171,7 @@ elseif PremiumOnly1 and OwnerOnly1 == false then
         Name = "premium test"
     })
 
-    local Walkspeed = Unassigned:AddSection({
+    local Walkspeed = Playerstuff:AddSection({
         Name = "Walkspeed"
     })
 
