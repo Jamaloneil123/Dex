@@ -14,11 +14,12 @@ local VoidKillEnabled = false -- Toggle state
 -- List of UserIds who should have access to the premium features
 local premiumUserIds = {
     4324222454, -- Replace with actual UserIds of Premium players
+    821141548,
 }
 
 -- List of Owner UserIds
 local ownerUserIds = {
-    7690555926, -- Replace with the first owner's UserId
+    1234556778, -- Replace with the first owner's UserId
     7629016664, -- Replace with the second owner's UserId
 }
 
@@ -62,7 +63,6 @@ end
 
 -- Example usage
 local player = game.Players.LocalPlayer -- Replace with your player reference
-togglePremiumOnly(player)
 
 
 if game.PlaceId == 10449761463 then
@@ -78,10 +78,12 @@ end
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = GameName, HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 
-if PremiumOnly1 and OwnerOnly1 == true then
+togglePremiumOnly()
+
+if PremiumOnly1 or OwnerOnly1 == true then
 
 
-elseif PremiumOnly1 and OwnerOnly1 == false then
+elseif PremiumOnly1 or OwnerOnly1 == false then
 
 
     -- tabs --
