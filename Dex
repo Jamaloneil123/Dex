@@ -176,7 +176,7 @@ elseif PremiumOnly1 and OwnerOnly1 == false then
     })
 
     local Dex = Universal:AddSection({
-        Name = "Dex explorer"
+        Name = "Dex"
     })
 
     local infyield = Universal:AddSection({
