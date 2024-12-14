@@ -613,12 +613,15 @@ Playerstuff:AddSlider({
 	Increment = 2,
 	ValueName = "Walk speed",
 	Callback = function(Value)
-		print(Value)
 	end    
 })
 
 
-if isNumber(Value) then
+local speed = args[1] or 16
+if args[2] then
+    speed = args[2] or 16
+end
+if isNumber(speed) then
     local Char = speaker.Character or workspace:FindFirstChild(speaker.Name)
     local Human = Char and Char:FindFirstChildWhichIsA("Humanoid")
     local function WalkSpeedChange()
