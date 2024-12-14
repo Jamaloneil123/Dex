@@ -604,10 +604,10 @@ elseif PremiumOnly1 and OwnerOnly1 == false then
 
 -- sliders -- 
 
--- Load Infinite Yield
-loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+-- Global variable to hold the walk speed value
+local loopSpeedValue = 16 -- Default speed
 
--- Define the Walk Speed Slider
+-- Slider Code
 Playerstuff:AddSlider({
 	Name = "Walkspeed",
 	Min = 16,
@@ -616,28 +616,47 @@ Playerstuff:AddSlider({
 	Color = Color3.fromRGB(255, 255, 255),
 	Increment = 2,
 	ValueName = "Walk speed",
-	Callback = function(Value) 
-		-- Get the player and humanoid
-		local speaker = game.Players.LocalPlayer
-		local Char = speaker.Character or workspace:FindFirstChild(speaker.Name)
-		local Human = Char and Char:FindFirstChildWhichIsA("Humanoid")
-		
-		if Human then
-			Human.WalkSpeed = Value -- Directly set WalkSpeed
-		end
-
-		-- Ensure WalkSpeed persists after respawn
-		speaker.CharacterAdded:Connect(function(newChar)
-			local newHuman = newChar:WaitForChild("Humanoid")
-			newHuman.WalkSpeed = Value
-		end)
-
-		-- Optional: Use Infinite Yield's 'speed' command
-		-- Send a command to Infinite Yield (if the script supports it)
-		local speedCommand = "speed " .. tostring(Value)
-		game:GetService("ReplicatedStorage"):WaitForChild("RemoteCommand", 2):FireServer(speedCommand)
+	Callback = function(Value)
+		-- Update the global loopSpeedValue dynamically
+		loopSpeedValue = Value
 	end    
 })
+
+-- Loop Walkspeed Command Code
+addcmd('loopspeed', {'loopws'}, function(args, speaker)
+	local speed = loopSpeedValue -- Start with the current slider value
+	if args[1] then
+		speed = tonumber(args[1]) or loopSpeedValue -- Allow manual input, fallback to slider value
+	end
+
+	-- Update loopSpeedValue globally for the slider
+	loopSpeedValue = speed
+
+	-- Define the character and humanoid
+	local Char = speaker.Character or workspace:FindFirstChild(speaker.Name)
+	local Human = Char and Char:FindFirstChildWhichIsA("Humanoid")
+
+	-- Function to constantly apply WalkSpeed
+	local function WalkSpeedChange()
+		if Char and Human then
+			Human.WalkSpeed = loopSpeedValue -- Always apply the global value
+		end
+	end
+
+	-- Run the WalkSpeed loop
+	WalkSpeedChange()
+	HumanModCons.wsLoop = (HumanModCons.wsLoop and HumanModCons.wsLoop:Disconnect() and false) 
+		or Human:GetPropertyChangedSignal("WalkSpeed"):Connect(WalkSpeedChange)
+
+	-- Ensure it persists after respawn
+	HumanModCons.wsCA = (HumanModCons.wsCA and HumanModCons.wsCA:Disconnect() and false) 
+		or speaker.CharacterAdded:Connect(function(nChar)
+			Char, Human = nChar, nChar:WaitForChild("Humanoid")
+			WalkSpeedChange()
+			HumanModCons.wsLoop = (HumanModCons.wsLoop and HumanModCons.wsLoop:Disconnect() and false) 
+				or Human:GetPropertyChangedSignal("WalkSpeed"):Connect(WalkSpeedChange)
+		end)
+end)
 
 
 
@@ -666,4 +685,6 @@ else
         Time = 10
     })
 end
-end
+
+
+print("player")
