@@ -171,6 +171,10 @@ elseif PremiumOnly1 and OwnerOnly1 == false then
         Name = "premium test"
     })
 
+    local Walkspeed = Unassigned:AddSection({
+        Name = "Walkspeed"
+    })
+
     local Dex = Universal:AddSection({
         Name = "Dex explorer"
     })
