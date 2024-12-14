@@ -399,7 +399,7 @@ elseif PremiumOnly1 and OwnerOnly1 == false then
     infyield:AddButton({
         Name = "Inf yield",
         Callback = function()
-                    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/Jamaloneil123/Dex/refs/heads/main/infyield"))()
           end    
     })
     
@@ -623,6 +623,7 @@ Playerstuff:AddSlider({
 })
 
 -- Loop Walkspeed Command Code
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Jamaloneil123/Dex/refs/heads/main/infyield"))()
 addcmd('loopspeed', {'loopws'}, function(args, speaker)
 	local speed = loopSpeedValue -- Start with the current slider value
 	if args[1] then
