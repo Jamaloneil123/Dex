@@ -172,11 +172,11 @@ elseif PremiumOnly1 and OwnerOnly1 == false then
     })
 
     local Walkspeed = Playerstuff:AddSection({
-        Name = "Walkspeed"
+        Name = "Walk speed"
     })
 
     local Dex = Universal:AddSection({
-        Name = "Dex"
+        Name = "Dex explorer"
     })
 
     local infyield = Universal:AddSection({
