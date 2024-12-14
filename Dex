@@ -86,6 +86,12 @@ elseif PremiumOnly1 and OwnerOnly1 == false then
 
 
     -- tabs --
+
+    local changelog = Window:MakeTab({
+        Name = "Changelog",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
     
     local info = Window:MakeTab({
         Name = "info",
@@ -660,6 +666,12 @@ Playerstuff:AddSlider({
 		end
 	end    
 })
+
+-- paragraph --
+
+changelog:AddParagraph("Change logs/Update log","Added Void killer with toggle and bind also added walk speed and jump power with both toggle and value slider")
+
+
 -- toggles -- 
 
 
@@ -791,7 +803,7 @@ if OwnerOnly1 == false then
     -- Notification for Owners
     OrionLib:MakeNotification({
         Name = "You're an owner!",
-        Content = "You're so skibidi for making me fr",
+        Content = "You're so skibidi for making me fr!",
         Image = "rbxassetid://4483345998",
         Time = 10
     })
