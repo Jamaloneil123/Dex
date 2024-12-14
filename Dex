@@ -602,6 +602,24 @@ elseif PremiumOnly1 and OwnerOnly1 == false then
     })
 
 
+-- sliders -- 
+
+Playerstuff:AddSlider({
+	Name = "Walkspeed",
+	Min = 16,
+	Max = 1000,
+	Default = 16,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 2,
+	ValueName = "Walk speed",
+	Callback = function(Value)
+		print(Value)
+	end    
+})
+
+
+
+
 end
 
 if OwnerOnly1 == false then 
