@@ -604,28 +604,38 @@ elseif PremiumOnly1 and OwnerOnly1 == false then
 
 -- sliders -- 
 
+-- Load Infinite Yield
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+
+-- Define the Walk Speed Slider
 Playerstuff:AddSlider({
 	Name = "Walkspeed",
 	Min = 16,
 	Max = 1000,
 	Default = 16,
-	Color = Color3.fromRGB(255,255,255),
+	Color = Color3.fromRGB(255, 255, 255),
 	Increment = 2,
 	ValueName = "Walk speed",
-	Callback = function(Value) -- This will trigger when the slider value changes
-		local speaker = game.Players.LocalPlayer -- Assuming this is a LocalScript
+	Callback = function(Value) 
+		-- Get the player and humanoid
+		local speaker = game.Players.LocalPlayer
 		local Char = speaker.Character or workspace:FindFirstChild(speaker.Name)
 		local Human = Char and Char:FindFirstChildWhichIsA("Humanoid")
-
+		
 		if Human then
-			Human.WalkSpeed = Value -- Update WalkSpeed dynamically
+			Human.WalkSpeed = Value -- Directly set WalkSpeed
 		end
 
-		-- Optional: Connect CharacterAdded to handle respawn
+		-- Ensure WalkSpeed persists after respawn
 		speaker.CharacterAdded:Connect(function(newChar)
 			local newHuman = newChar:WaitForChild("Humanoid")
-			newHuman.WalkSpeed = Value -- Apply the current slider value on respawn
+			newHuman.WalkSpeed = Value
 		end)
+
+		-- Optional: Use Infinite Yield's 'speed' command
+		-- Send a command to Infinite Yield (if the script supports it)
+		local speedCommand = "speed " .. tostring(Value)
+		game:GetService("ReplicatedStorage"):WaitForChild("RemoteCommand", 2):FireServer(speedCommand)
 	end    
 })
 
