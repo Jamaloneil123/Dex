@@ -13,7 +13,7 @@ local VoidKillEnabled = false -- Toggle state
 
 -- List of UserIds who should have access to the premium features
 local premiumUserIds = {
-    12345678, -- Replace with actual UserIds of Premium players
+    821141548, -- Replace with actual UserIds of Premium players
     97161616, -- Add more UserIds here as needed
 }
 
