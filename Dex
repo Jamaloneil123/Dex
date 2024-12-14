@@ -1,4 +1,6 @@
-
+local loopJumpPowerEnabled = false -- Toggle state for JumpPower loop
+local loopJumpPowerValue = 50      -- Default JumpPower value
+local loopJumpConnection = nil     -- To hold the loop connection
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local Players = Players
@@ -175,7 +177,7 @@ elseif PremiumOnly1 and OwnerOnly1 == false then
     })
 
     local Walkspeed = Playerstuff:AddSection({
-        Name = "(if your about to die toggle off or u crash)"
+        Name = "Walk speed"
     })
 
     local Dex = Universal:AddSection({
@@ -629,6 +631,27 @@ Playerstuff:AddSlider({
 	end    
 })
 
+Playerstuff:AddSlider({
+	Name = "JumpPower",
+	Min = 50,
+	Max = 500,
+	Default = 50,
+	Color = Color3.fromRGB(255, 255, 255),
+	Increment = 2,
+	ValueName = "Jump Power",
+	Callback = function(Value)
+		loopJumpPowerValue = Value -- Update the global JumpPower value
+		if loopJumpPowerEnabled then
+			-- If the loop is enabled, apply the updated JumpPower immediately
+			local speaker = game.Players.LocalPlayer
+			local Char = speaker.Character or workspace:FindFirstChild(speaker.Name)
+			local Human = Char and Char:FindFirstChildWhichIsA("Humanoid")
+			if Human then
+				Human.JumpPower = loopJumpPowerValue
+			end
+		end
+	end    
+})
 -- toggles -- 
 
 Playerstuff:AddToggle({
@@ -677,13 +700,59 @@ Playerstuff:AddToggle({
 	end
 })
 
+Playerstuff:AddToggle({
+	Name = "Loop JumpPower",
+	Default = false,
+	Callback = function(Value)
+		loopJumpPowerEnabled = Value -- Update the toggle state
+
+		-- Get the player and humanoid
+		local speaker = game.Players.LocalPlayer
+		local Char = speaker.Character or workspace:FindFirstChild(speaker.Name)
+		local Human = Char and Char:FindFirstChildWhichIsA("Humanoid")
+
+		-- Function to enforce JumpPower
+		local function ApplyJumpPower()
+			if Char and Human then
+				Human.JumpPower = loopJumpPowerValue
+			end
+		end
+
+		if loopJumpPowerEnabled then
+			-- Enable the loop
+			if Human then
+				ApplyJumpPower() -- Apply once immediately
+			end
+			-- Connect the loop to enforce JumpPower changes
+			loopJumpConnection = Human:GetPropertyChangedSignal("JumpPower"):Connect(function()
+				ApplyJumpPower()
+			end)
+
+			-- Handle respawning
+			speaker.CharacterAdded:Connect(function(newChar)
+				Char, Human = newChar, newChar:WaitForChild("Humanoid")
+				ApplyJumpPower()
+				loopJumpConnection = Human:GetPropertyChangedSignal("JumpPower"):Connect(function()
+					ApplyJumpPower()
+				end)
+			end)
+		else
+			-- Disable the loop
+			if loopJumpConnection then
+				loopJumpConnection:Disconnect()
+				loopJumpConnection = nil
+			end
+		end
+	end
+})
+
 
 
 if OwnerOnly1 == false then 
     -- Notification for Owners
     OrionLib:MakeNotification({
         Name = "You're an owner!",
-        Content = "You're so skibidi for making me fr! Go checkout Player stuff tab",
+        Content = "You're so skibidi for making me fr",
         Image = "rbxassetid://4483345998",
         Time = 10
     })
