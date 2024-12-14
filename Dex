@@ -175,7 +175,7 @@ elseif PremiumOnly1 and OwnerOnly1 == false then
     })
 
     local Walkspeed = Playerstuff:AddSection({
-        Name = "Walk speed"
+        Name = "(if your about to die toggle off or u crash)"
     })
 
     local Dex = Universal:AddSection({
