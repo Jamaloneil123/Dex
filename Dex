@@ -92,6 +92,12 @@ elseif PremiumOnly1 and OwnerOnly1 == false then
         PremiumOnly = PremiumOnly1 and OwnerOnly1
     })
 
+    local Playerstuff = Window:MakeTab({
+        Name = "Player stuff",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = PremiumOnly1 and OwnerOnly1
+    })
+
     local saitama = Window:MakeTab({
         Name = "The strongest hero",
         Icon = "rbxassetid://4483345998",
