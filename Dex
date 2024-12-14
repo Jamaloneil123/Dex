@@ -612,32 +612,23 @@ Playerstuff:AddSlider({
 	Color = Color3.fromRGB(255,255,255),
 	Increment = 2,
 	ValueName = "Walk speed",
-	Callback = function(Value)
+	Callback = function(Value) -- This will trigger when the slider value changes
+		local speaker = game.Players.LocalPlayer -- Assuming this is a LocalScript
+		local Char = speaker.Character or workspace:FindFirstChild(speaker.Name)
+		local Human = Char and Char:FindFirstChildWhichIsA("Humanoid")
+
+		if Human then
+			Human.WalkSpeed = Value -- Update WalkSpeed dynamically
+		end
+
+		-- Optional: Connect CharacterAdded to handle respawn
+		speaker.CharacterAdded:Connect(function(newChar)
+			local newHuman = newChar:WaitForChild("Humanoid")
+			newHuman.WalkSpeed = Value -- Apply the current slider value on respawn
+		end)
 	end    
 })
 
-
-local speed = args[1] or 16
-if args[2] then
-    speed = args[2] or 16
-end
-if isNumber(speed) then
-    local Char = speaker.Character or workspace:FindFirstChild(speaker.Name)
-    local Human = Char and Char:FindFirstChildWhichIsA("Humanoid")
-    local function WalkSpeedChange()
-        if Char and Human then
-            Human.WalkSpeed = Value
-        end
-    end
-    WalkSpeedChange()
-    HumanModCons.wsLoop = (HumanModCons.wsLoop and HumanModCons.wsLoop:Disconnect() and false) or Human:GetPropertyChangedSignal("WalkSpeed"):Connect(WalkSpeedChange)
-    HumanModCons.wsCA = (HumanModCons.wsCA and HumanModCons.wsCA:Disconnect() and false) or speaker.CharacterAdded:Connect(function(nChar)
-        Char, Human = nChar, nChar:WaitForChild("Humanoid")
-        WalkSpeedChange()
-        HumanModCons.wsLoop = (HumanModCons.wsLoop and HumanModCons.wsLoop:Disconnect() and false) or Human:GetPropertyChangedSignal("WalkSpeed"):Connect(WalkSpeedChange)
-    end)
-end
-end
 
 
 if OwnerOnly1 == false then 
