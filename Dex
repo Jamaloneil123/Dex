@@ -2,11 +2,13 @@ local loopJumpPowerEnabled = false -- Toggle state for JumpPower loop
 local loopJumpPowerValue = 50      -- Default JumpPower value
 local loopJumpConnection = nil     -- To hold the loop connection
 local Players = game:GetService("Players")
+local player = game.Players.LocalPlayer
 local player = Players.LocalPlayer
 local Players = Players
 local loopSpeedEnabled = false -- Toggle state
 local loopSpeedValue = 16      -- Default walk speed value
 local loopConnection = nil     -- To hold the loop connection
+local VoidKillEnabled = false -- Toggle state
 
 
 -- List of UserIds who should have access to the premium features
@@ -89,6 +91,12 @@ elseif PremiumOnly1 and OwnerOnly1 == false then
         Name = "info",
         Icon = "rbxassetid://4483345998",
         PremiumOnly = false
+    })
+
+    local Keybinds = Window:MakeTab({
+        Name = "Keybinds",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = PremiumOnly1 and OwnerOnly1
     })
 
     local Universal = Window:MakeTab({
@@ -654,6 +662,7 @@ Playerstuff:AddSlider({
 })
 -- toggles -- 
 
+
 Playerstuff:AddToggle({
 	Name = "Loop Walkspeed",
 	Default = false,
@@ -746,6 +755,36 @@ Playerstuff:AddToggle({
 	end
 })
 
+-- keybinds --
+
+local function teleportToVoid()
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+    
+    if humanoidRootPart then
+        -- Teleport to the void (Y = -500)
+        humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position.X, -500, humanoidRootPart.Position.Z)
+    end
+end
+
+Keybinds:AddToggle({
+	Name = "Void Kill Toggle",
+	Default = false,
+	Callback = function(Value)
+		VoidKillEnabled = Value -- Update the toggle state
+	end
+})
+
+Keybinds:AddBind({
+	Name = "Void Kill",
+	Default = Enum.KeyCode.E, -- Default keybind is "E"
+	Hold = false,
+	Callback = function()
+		if VoidKillEnabled then
+			teleportToVoid() -- Only teleport if the toggle is enabled
+		end
+	end
+})
 
 
 if OwnerOnly1 == false then 
