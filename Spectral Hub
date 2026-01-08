@@ -19,4 +19,4 @@ JOIN THE DISCORD AT: discord.gg/ysmTfrP6Hs
 
 --]]
 
-loadstring(game:HttpGet("https://api.junkie-development.de/api/v1/luascripts/public/7481ac64d1a98245f118733e65a8e568b4169e0cbfdc1c556a11799304ce36a2/download"))()
+loadstring(game:HttpGet("https://api.junkie-development.de/api/v1/luascripts/public/47bfe55b133f1d596672b0d27831698d55093b607c52b23d6c272ae0c8a20b80/download"))()
